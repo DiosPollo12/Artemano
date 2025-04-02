@@ -75,7 +75,7 @@
                 android:id="@+id/btn_ir2"
                 android:layout_width="200dp"
                 android:layout_height="75dp"
-                android:text="Iniciar sesión"
+                android:text="Iniciar sesión 2.0"
                 android:textSize="20sp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center_horizontal"/>
