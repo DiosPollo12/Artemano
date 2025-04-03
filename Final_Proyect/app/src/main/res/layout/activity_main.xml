@@ -34,7 +34,7 @@
                 android:background="@android:color/transparent"
                 android:text="Artemano"
                 android:textColor="#ffffff"
-                android:textSize="60sp"
+                android:textSize="50sp"
                 android:textStyle="bold" />
 
             <!-- Logo sobre el fondo -->
