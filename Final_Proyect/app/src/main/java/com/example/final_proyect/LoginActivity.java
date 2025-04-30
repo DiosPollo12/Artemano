@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         Button btnIr = findViewById(R.id.btn_login);
         if (btnIr != null) {
             btnIr.setOnClickListener(v -> {
-                Intent intent = new Intent(LoginActivity.this, PagingInitioActivity.class);
+                Intent intent = new Intent(LoginActivity.this, PaginaInicioActivity.class);
                 startActivity(intent);
             });
         }
