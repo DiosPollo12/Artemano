@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Final_Proyect</string>
-    <string name="artesanias">Artesanias</string>
-    <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="shop">Shop</string>
     <string name="menu">Menu</string>

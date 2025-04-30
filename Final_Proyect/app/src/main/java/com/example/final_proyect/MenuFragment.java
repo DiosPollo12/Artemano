@@ -1,64 +1,92 @@
 package com.example.final_proyect;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView recyclerView;
+    private MenuAdapter adapter;
+    private List<MenuOption> menuList;
 
     public MenuFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MenuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MenuFragment newInstance(String param1, String param2) {
-        MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        // Constructor vacío requerido
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+
+        recyclerView = view.findViewById(R.id.menu_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        menuList = new ArrayList<>();
+        menuList.add(new MenuOption("Inicio", R.drawable.ic_home));
+        menuList.add(new MenuOption("Carrito", R.drawable.ic_shop));
+        menuList.add(new MenuOption("Cuenta", R.drawable.ic_profile));
+        menuList.add(new MenuOption("Cambiar Contraseña", R.drawable.ic_password));
+        menuList.add(new MenuOption("Notificaciones", R.drawable.ic_notifications));
+        menuList.add(new MenuOption("Privacidad", R.drawable.ic_privacy));
+        menuList.add(new MenuOption("Cerrar Sesión", R.drawable.ic_logout));
+
+        adapter = new MenuAdapter(menuList, getContext(), option -> {
+            String title = option.getTitle();
+
+            if (title.equals("Inicio")) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new HomeFragment())
+                        .commit();
+            } else if (title.equals("Carrito")) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ShopCarFragment())
+                        .commit();
+            } else if (title.equals("Cuenta")) {
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileFragment())
+                        .commit();
+            } else if (title.equals("Cerrar Sesión")) {
+                cerrarSesion();  // 👈 Aquí llamas la función
+            } else {
+                Toast.makeText(getContext(), title + " seleccionado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+
+        return view;
+    }
+
+    // 👇 Aquí agregas tu función
+    private void cerrarSesion() {
+        // Elimina los datos de sesión guardados
+        SharedPreferences preferences = requireActivity().getSharedPreferences("user_session", getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // Vuelve a la pantalla de inicio
+
+        // Cierra la actividad actual para evitar volver atrás
+        requireActivity().finish();
+
+        Toast.makeText(getContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        requireActivity().finish();
     }
 }

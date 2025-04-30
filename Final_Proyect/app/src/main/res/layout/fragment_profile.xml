@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    android:background="#FAFAFA"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_profile"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/circle_background"
+            android:padding="4dp"
+            android:elevation="4dp"/>
+
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Usuario"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="usuario@email.com"
+            android:textSize="16sp"
+            android:textColor="#555"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/purchase_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compras: 0"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/favorite_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favoritos: 0"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/review_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reseñas: 0"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/edit_profile_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar perfil"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</ScrollView>
