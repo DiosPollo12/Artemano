@@ -7,55 +7,45 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
-        // Configurar insets
-        if (findViewById(R.id.main) != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        // Establecer el layout antes de acceder a sus vistas
+        setContentView(R.layout.activity_login);  // Asegúrate de que este layout existe
+
+        // Configurar insets para ajustar las barras del sistema
+        View mainView = findViewById(R.id.main);
+        if (mainView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
                 return insets;
             });
         }
 
-        // Inicializar el ImageView
+        // Inicializar el ImageView para el fondo
         ImageView backgroundImage = findViewById(R.id.backgroundImage);
         if (backgroundImage != null) {
             backgroundImage.setImageResource(R.drawable.newfondo);
             backgroundImage.setAlpha(0.5f);
         }
 
-        // Inicializar el botón
-        Button btnIr = findViewById(R.id.btn_ir);
-        btnIr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        // Configurar el botón para iniciar la siguiente actividad
+        Button btnIr = findViewById(R.id.btn_login);
+        if (btnIr != null) {
+            btnIr.setOnClickListener(v -> {
+                Intent intent = new Intent(LoginActivity.this, PagingInitioActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        btnIr = findViewById(R.id.btn_ir2);
-        btnIr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegistrarActivity.class);
-                startActivity(intent);
-            }
-        });
-
+            });
+        }
     }
 }

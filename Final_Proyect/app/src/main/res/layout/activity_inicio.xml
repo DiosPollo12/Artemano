@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:queryHint="Buscar en artemano"
         android:layout_margin="16dp"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:elevation="4dp" />
 
     <!-- Contenedor de fragmentos debajo del SearchView -->
