@@ -30,10 +30,10 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/search_view"
+        android:layout_height="570dp"
         android:layout_above="@id/bottom_navigation"
-        android:layout_marginBottom="56dp" /> <!-- margen para que no tape la nav -->
+        android:layout_below="@id/search_view"
+        android:layout_marginBottom="2dp" /> <!-- margen para que no tape la nav -->
 
     <!-- Menú inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

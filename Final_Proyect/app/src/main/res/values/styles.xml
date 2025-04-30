@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Colores -->
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <!-- Estilo de texto -->
+    <style name="AppTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <!-- Forma redondeada para botones y elementos -->
+    <style name="ShapeAppearance.MaterialComponents.Corner" parent="Widget.MaterialComponents.Button">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+
+
+
+    <!-- Estilo para el RecyclerView -->
+    <style name="RecyclerViewStyle">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+</resources>

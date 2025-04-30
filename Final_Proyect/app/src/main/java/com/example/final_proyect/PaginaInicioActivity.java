@@ -1,15 +1,18 @@
 package com.example.final_proyect;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PaginaInicioActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +20,11 @@ public class PaginaInicioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inicio);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        searchView = findViewById(R.id.search_view);
 
-        // Fragmento por defecto
+        // Configuración del Bottom Navigation y fragmentos
         loadFragment(new HomeFragment());
 
-        // Navegación con if-else en lugar de switch
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment fragment;
 
@@ -39,6 +42,33 @@ public class PaginaInicioActivity extends AppCompatActivity {
 
             return loadFragment(fragment);
         });
+
+        // Configuración de la barra de búsqueda
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Aquí podrías ejecutar la búsqueda
+                filterProducts(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Aquí puedes mostrar resultados en tiempo real
+                filterProducts(newText);
+                return false;
+            }
+        });
+    }
+
+    // Método para filtrar los productos
+    private void filterProducts(String query) {
+        // Obtén el fragmento de Home o donde quieras mostrar los productos
+        HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (homeFragment != null) {
+            homeFragment.filterProducts(query);  // Llama a un método en el fragmento de Home
+        }
     }
 
     private boolean loadFragment(Fragment fragment) {

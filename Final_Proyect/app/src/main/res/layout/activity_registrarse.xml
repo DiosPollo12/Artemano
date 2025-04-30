@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+    android:id="@+id/register_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/backgroundImage"
+            android:id="@+id/registerBackgroundImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
@@ -43,7 +43,9 @@
                 android:src="@drawable/logo"
                 android:layout_gravity="center_horizontal" />
 
+            <!-- Nombre -->
             <EditText
+                android:id="@+id/registerNameEditText"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -51,9 +53,11 @@
                 android:textSize="20sp"
                 android:gravity="start"
                 android:textColorHint="@color/white"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
 
+            <!-- Correo -->
             <EditText
+                android:id="@+id/registerEmailEditText"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -61,37 +65,70 @@
                 android:textSize="20sp"
                 android:gravity="start"
                 android:textColorHint="@color/white"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
-            <EditText
+            <!-- Contraseña -->
+            <FrameLayout
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Ingrese su contraseña"
-                android:textSize="20sp"
-                android:gravity="start"
-                android:inputType="textPassword"
-                android:textColorHint="@color/white" />
+                android:layout_marginTop="20dp">
 
-            <EditText
+                <EditText
+                    android:id="@+id/registerPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese su contraseña"
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/white"
+                    android:paddingEnd="40dp"/>
+
+                <ImageView
+                    android:id="@+id/togglePasswordVisibility"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_eye_closed"
+                    android:contentDescription="Mostrar contraseña" />
+            </FrameLayout>
+
+            <!-- Confirmar Contraseña -->
+            <FrameLayout
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Confirme su contraseña"
-                android:textSize="20sp"
-                android:gravity="start"
-                android:inputType="textPassword"
-                android:textColorHint="@color/white"/>
+                android:layout_marginTop="20dp">
 
+                <EditText
+                    android:id="@+id/registerConfirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirme su contraseña"
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/white"
+                    android:paddingEnd="40dp"/>
+
+                <ImageView
+                    android:id="@+id/toggleConfirmPasswordVisibility"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_eye_closed"
+                    android:contentDescription="Mostrar contraseña" />
+            </FrameLayout>
+
+            <!-- Botón de Registro -->
             <Button
-                android:id="@+id/btn_registro"
+                android:id="@+id/btn_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="Registrarse"
                 android:textSize="30sp"/>
-
-
 
         </LinearLayout>
 
