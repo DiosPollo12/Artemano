@@ -2,15 +2,15 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="@string/home" />
+        android:title="Mis Productos" />
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
-        android:title="@string/profile" />
+        android:title="Agregar Producto" />
     <item
         android:id="@+id/nav_shop"
         android:icon="@drawable/ic_shop"
-        android:title="@string/shop" />
+        android:title="Gestionar Productos" />
     <item
         android:id="@+id/nav_menu"
         android:icon="@drawable/ic_menu"
