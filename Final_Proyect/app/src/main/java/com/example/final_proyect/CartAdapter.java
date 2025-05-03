@@ -28,6 +28,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         TextView name, price;
         RatingBar rating;
 
+
         public CartViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.product_image);
@@ -53,9 +54,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.rating.setRating(product.getRating());
     }
 
+
+
     @Override
     public int getItemCount() {
         return cartList.size();
     }
 }
-

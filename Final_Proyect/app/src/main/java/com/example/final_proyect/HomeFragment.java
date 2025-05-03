@@ -2,8 +2,6 @@ package com.example.final_proyect;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,10 +118,26 @@ public class HomeFragment extends Fragment {
             holder.price.setText(product.getPrice());
             holder.image.setImageResource(product.getImageResId());
 
-            // Configurar el botón de "Agregar al carrito"
+            // Mostrar ícono favorito inicial (por defecto no favorito)
+            holder.isFavorite = false;
+            holder.favoriteButton.setImageResource(R.drawable.ic_border_favorite);
+
+            // Botón para agregar al carrito
             holder.buyButton.setOnClickListener(v -> {
-                CartManager.getInstance().addToCart(product); // Agregar al carrito
+                CartManager.getInstance().addToCart(product);
                 Toast.makeText(context, product.getName() + " añadido al carrito", Toast.LENGTH_SHORT).show();
+            });
+
+            // Botón para agregar o quitar de favoritos
+            holder.favoriteButton.setOnClickListener(v -> {
+                holder.isFavorite = !holder.isFavorite;
+                if (holder.isFavorite) {
+                    holder.favoriteButton.setImageResource(R.drawable.ic_favorite);
+                    Toast.makeText(context, product.getName() + " añadido a favoritos", Toast.LENGTH_SHORT).show();
+                } else {
+                    holder.favoriteButton.setImageResource(R.drawable.ic_border_favorite);
+                    Toast.makeText(context, product.getName() + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                }
             });
         }
 
@@ -137,6 +151,8 @@ public class HomeFragment extends Fragment {
             ImageView image;
             TextView name, price;
             Button buyButton;
+            ImageView favoriteButton;
+            boolean isFavorite = false;
 
             public ProductViewHolder(View itemView) {
                 super(itemView);
@@ -144,6 +160,7 @@ public class HomeFragment extends Fragment {
                 name = itemView.findViewById(R.id.product_name);
                 price = itemView.findViewById(R.id.product_price);
                 buyButton = itemView.findViewById(R.id.buy_button);
+                favoriteButton = itemView.findViewById(R.id.favorite_button);
             }
         }
     }

@@ -37,7 +37,7 @@ public class MenuFragment extends Fragment {
         menuList.add(new MenuOption("Inicio", R.drawable.ic_home));
         menuList.add(new MenuOption("Carrito", R.drawable.ic_shop));
         menuList.add(new MenuOption("Cuenta", R.drawable.ic_profile));
-        menuList.add(new MenuOption("Cambiar Contraseña", R.drawable.ic_password));
+        menuList.add(new MenuOption("Modo Vendedor", R.drawable.ic_shop_mode));
         menuList.add(new MenuOption("Notificaciones", R.drawable.ic_notifications));
         menuList.add(new MenuOption("Privacidad", R.drawable.ic_privacy));
         menuList.add(new MenuOption("Cerrar Sesión", R.drawable.ic_logout));
@@ -57,19 +57,23 @@ public class MenuFragment extends Fragment {
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())
                         .commit();
+            } else if (title.equals("Modo Vendedor")) {
+                Intent intent = new Intent(getActivity(), VendedorActivity.class);
+                startActivity(intent);
             } else if (title.equals("Cerrar Sesión")) {
-                cerrarSesion();  // 👈 Aquí llamas la función
+                cerrarSesion();
             } else {
                 Toast.makeText(getContext(), title + " seleccionado", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
-    // 👇 Aquí agregas tu función
+    // Aquí agregas tu función
     private void cerrarSesion() {
         // Elimina los datos de sesión guardados
         SharedPreferences preferences = requireActivity().getSharedPreferences("user_session", getContext().MODE_PRIVATE);
