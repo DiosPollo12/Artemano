@@ -5,14 +5,17 @@ public class Product {
     private String price;
     private int imageResId;
     private float rating;
+    private boolean isFavorite; // Campo nuevo
 
     public Product(String name, String price, int imageResId, float rating) {
         this.name = name;
         this.price = price;
         this.imageResId = imageResId;
         this.rating = rating;
+        this.isFavorite = false;
     }
 
+    // Getters y setters
     public String getName() {
         return name;
     }
@@ -28,4 +31,13 @@ public class Product {
     public float getRating() {
         return rating;
     }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 }
+
